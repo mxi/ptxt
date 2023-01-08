@@ -31,8 +31,8 @@ Limitations
 -----------
 Some features are desired, but are not implemented yet:
 - Allow font embedding.
-- Right and bottom margins (require some form of layout engine.)
-- Automatic column and row detection (require some form of layout engine.)
+- Right and bottom margins (requires font library.)
+- Automatic column and row detection (requires font library.)
 
 Examples
 -----
