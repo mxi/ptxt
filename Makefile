@@ -1,16 +1,18 @@
 .PHONY: install clean
 
-CC=cc
-INSTALL=install
-prefix=/usr/local
-bindir=$(prefix)/bin
+CFLAGS := -std=c89 -O0 -ggdb \
+          -fsanitize=undefined \
+          -fsanitize=address \
+          -fvisibility=hidden
+PREFIX := /usr/local
+BINDIR := $(PREFIX)/bin
 
 ptxt: ptxt.c
-	$(CC) -o $@ $<
+	$(CC) $(CFLAGS) -o $@ $<
 
 install: ptxt
-	$(INSTALL) -d $(bindir)
-	$(INSTALL) ptxt $(bindir)/
+	install -d $(BINDIR)
+	install ptxt $(BINDIR)
 
 clean:
 	rm -f ptxt
