@@ -15,7 +15,7 @@
 #define PROGNAME "ptxt"
 #define VERSION "0.2.0 <https://github.com/dongyx/ptxt>"
 #define AUTHORS "Written by DONG Yuxuan <https://www.dyx.name>\n" \
-	            "Patched by Maxim Kasyanenko <https://github.com/mxi>\n"
+	            "           Maxim Kasyanenko <https://github.com/mxi>\n"
 #define NPAGE 32768
 #define PG_BASE 32768
 #define PC_BASE (PG_BASE+NPAGE)
@@ -52,7 +52,7 @@ void version();
 enum {
 	FONT_SANS,
 	FONT_SERIF,
-	FONT_MONO,
+	FONT_MONO
 };
 int ncol, nrow;
 int offx, offy;
@@ -395,7 +395,7 @@ int genpdf(FILE *in)
 		outf("stream\n");
 		cs_begin = nwrote;
 		{
-			int row, ch;
+			int row;
 			outf("BT\n");
 			outf("11 TL\n");
 			outf("%d %d Td\n", offx, 842-offy); /* FIXME: hardcoded page size (8x11in) */
@@ -551,16 +551,16 @@ int parse_size(char const *name, int *out, char const *str)
 		goto done;
 	}
 	/* units */
-	if (strcasecmp(end, "pt") == 0) {
+	if (strcmp(end, "pt") == 0) {
 		/* do nothing, it's the default */
 	}
-	else if (strcasecmp(end, "in") == 0) {
+	else if (strcmp(end, "in") == 0) {
 		raw *= 72.;
 	}
-	else if (strcasecmp(end, "cm") == 0) {
+	else if (strcmp(end, "cm") == 0) {
 		raw *= 28.346457;
 	}
-	else if (strcasecmp(end, "mm") == 0) {
+	else if (strcmp(end, "mm") == 0) {
 		raw *= 2.8346457;
 	}
 	else if (*end != 0) {
@@ -605,7 +605,7 @@ void usage()
 void
 version()
 {
-	errf("%s %s\n%s\n", PROGNAME, VERSION, AUTHORS);
+	errf("%s %s\n%s", PROGNAME, VERSION, AUTHORS);
 }
 
 /* vi:set sw=4 sts=4 ts=4 noet: */

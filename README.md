@@ -59,8 +59,14 @@ Examples
 
 	Print version information.
 
+See **ptxt(1)** for more information.
+
 Installation
 ------------
 
-	$ make
+	$ make NDEBUG=1
 	$ sudo make install
+
+To uninstall,
+
+	$ sudo make uninstall

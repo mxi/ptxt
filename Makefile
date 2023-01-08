@@ -1,18 +1,28 @@
-.PHONY: install clean
+.PHONY: install uninstall clean
 
-CFLAGS := -std=c89 -O0 -ggdb \
+CFLAGS := -std=c89 -Wall -Werror -pedantic -fvisibility=hidden
+ifndef NDEBUG
+CFLAGS += -O0 -ggdb \
           -fsanitize=undefined \
-          -fsanitize=address \
-          -fvisibility=hidden
+          -fsanitize=address
+else
+CFLAGS += -O2 -DNDEBUG=1
+endif
 PREFIX := /usr/local
-BINDIR := $(PREFIX)/bin
+BINDIR := $(PREFIX)/bin/
+MANDIR := $(PREFIX)/man/man1/
 
 ptxt: ptxt.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 install: ptxt
-	install -d $(BINDIR)
+	install -d $(BINDIR) $(MANDIR)
 	install ptxt $(BINDIR)
+	install ptxt.1 $(MANDIR)
+
+uninstall:
+	rm $(BINDIR)ptxt
+	rm $(MANDIR)ptxt.1
 
 clean:
 	rm -f ptxt

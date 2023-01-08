@@ -1,0 +1,93 @@
+.TH PTXT 1 2023-01-07 ptxt\-0.2.0
+
+.SH NAME
+ptxt \- fast text-to-PDF converter
+
+.SH SYNOPSIS
+\fBptxt\fR [\-c|\-\-columns \fINATURAL\fR]
+     [\-r|\-\-rows \fINATURAL\fR]
+     [\-t|\-\-tab\-stop \fINATURAL\fR]
+     [\-x|\-\-offx \fISIZE\fR]
+     [\-y|\-\-offy \fISIZE\fR]
+     [\-s|\-\-font\-size \fISIZE\fR]
+     [\-f|\-\-font \fIFONT\fR]
+     [\-o|\-\-output \fIFILE\fR]
+     [\-v|\-\-version]
+     [\-h|\-\-help]
+     [\fIFILE\fR]
+
+\fINATURAL\fR := Positive integer
+
+\fINUMBER\fR := Non-negative real
+
+\fISIZE\fR := \fINUMBER\fR{pt|in|cm|mm}
+
+\fIFONT\fR := {sans|serif|mono}
+
+\fIPATH\fR := Filesystem path string
+
+\fIFILE\fR := {\fIPATH\fR|-}
+
+.SH DESCRIPTION
+\fBptxt\fR is a fast, lightweight text-to-PDF converter. 
+
+By default, input is taken from stdin and output to stdout. By specifying \fI-\fR
+for either the input or output \fIFILE\fR, block buffering is used instead of
+line buffering.
+
+See the \fBBUGS\fR section for feature requests and bug reports.
+
+.SH OPTIONS
+.TP
+\fB\-c\fR, \fB\-\-columns\fR \fINATURAL\fR[=80]
+Maximum number of characters in a row.
+
+.TP
+\fB-r\fR, \fB--rows\fR \fINATURAL\fR[=60]
+Maximum number of rows on a page.
+
+.TP
+\fB-t\fR, \fB--tab-stop\fR \fINATURAL\fR[=8]
+The tab stop. All tab characters in the input will align the text ahead on this
+boundary as you would expect.
+
+.TP
+\fB-x\fR, \fB--offx\fR \fISIZE\fR[=72pt]
+The left margin.
+
+.TP
+\fB-y\fR, \fB--offy\fR \fISIZE\fR[=72pt]
+The top margin.
+
+.TP
+\fB-s\fR, \fB--font-size\fR \fISIZE\fR[=10pt]
+The font size.
+
+.TP
+\fB-f\fR, \fB--font\fR \fIFONT\fR[=mono]
+The font style. The only available options as of now are \fIsans\fR, \fIserif\fR,
+and \fImono\fR. Some effort is still required to embed a custom font.
+
+.TP
+\fB-o\fR, \fB--output\fR \fIFILE\fR
+Specifies the output file. The special \fI\-\fR target specifies stdout but with 
+full block buffering. See \fBsetbuf(3)\fR.
+
+.TP
+\fB-v\fR, \fB--version\fR
+Display version information.
+
+.TP
+\fB-h\fR, \fB--help\fR
+Display help information.
+
+.SH AUTHORS
+DONG Yuxuan <\fIhttps://www.dyx.name\fR> since 0.1.0.
+
+Maxim Kasyanenko <\fIhttps://github.com/mxi\fR> since 0.2.0.
+
+.SH LICENSE
+See the LICENSE file for the terms of redistribution.
+
+.SH BUGS
+Report issues or submit requests at \fIhttps://github.com/dongyx/ptxt\fR.
